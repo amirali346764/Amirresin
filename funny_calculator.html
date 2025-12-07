@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ماشین حساب فان</title>
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Tahoma, sans-serif;
+      color: #fff;
+    }
+    .calculator {
+      background: #1c1c1c;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 30px rgba(255,0,0,0.6);
+      width: 300px;
+    }
+    .display {
+      background: #111;
+      color: #fff;
+      font-size: 1.5em;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: right;
+      margin-bottom: 15px;
+      overflow-x: auto;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: #ff0000;
+    }
+    .equal {
+      grid-column: span 2;
+      background: #ff0000;
+    }
+    .equal:hover {
+      background: #cc0000;
+    }
+    .clear {
+      background: #444;
+    }
+    .clear:hover {
+      background: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('/')">÷</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('*')">×</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('-')">-</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button onclick="append('+')">+</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+
+    function append(value) {
+      if (display.innerText === "0" || display.innerText.includes("جواب")) {
+        display.innerText = value;
+      } else {
+        display.innerText += value;
+      }
+    }
+
+    function clearDisplay() {
+      display.innerText = "0";
+    }
+
+    function calculate() {
+      let expression = display.innerText;
+      let jokes = [
+        "😂 خاک تو سرت که اینو نمی‌دونی!",
+        "😅 اینو بچه‌های ابتدایی هم بلدن!",
+        "🤣 ریاضی به چه دردت خورده تا حالا؟",
+        "🙄 فقط یه اسکول جواب اینو نمیدونه ",
+        "🤡 اینم من باید بهت بگم؟",
+        "😎 موندم تو چرا عقل نداری"
+      ];
+      let randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      let fakeAnswer = Math.floor(Math.random() * 999) + 1; // جواب الکی
+      display.innerText = randomJoke + " جوابش میشه " + fakeAnswer;
+    }
+  </script>
+</body>
+</html>
